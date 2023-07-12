@@ -8,6 +8,7 @@ const provider = new ethers.JsonRpcProvider(process.env.JSON_PRC_URL);
 const privateKey = process.env.PRIVATE_KEY;
 const wallet = new ethers.Wallet(privateKey, provider);
 const myWalletAddress = wallet.address;
+const { checkInput } = require('../utils/helper.js');
 
 const {
   cEthAbi,
@@ -17,12 +18,15 @@ const {
   erc20Abi,
 } = require('../../contracts.json');
 
-// contract address for mainnet
-const cEthContractAddress = '0x4ddc2d193948926d02f9b1fe9e1daa0718270ed5';
-const cTokenContractAddress = '0x5d3a536e4d6dbd6114cc1ead35777bab948e3643';  // 이 경우엔 cDAI
-const underlyingContractAddress = '0x6B175474E89094C44Da98b954EedeAC495271d0F'; // 이 경우엔 DAI
-const comptrollerAddress = '0x3d9819210a31b4961b30ef54be2aed79b9c9cd3b';
-const priceFeedAddress = '0x6d2299c48a8dd07a872fdd0f8233924872ad1071';
+const {
+  cEthContractAddress,
+  cTokenContractAddress,
+  underlyingContractAddress,
+  comptrollerAddress,
+  priceFeedAddress
+} = require('../utils/constants.js');
+
+
 
 const cEth = new ethers.Contract(cEthContractAddress, cEthAbi, provider);
 const cErc20 = new ethers.Contract(cTokenContractAddress, cErcAbi, provider);
@@ -85,11 +89,7 @@ const getBalance = async (req, res) => {
 const supplyEth = async (req, res) => {
   let { supplyAmount } = req.body;
   // 입력값 확인
-  try {
-    supplyAmount = BigInt(supplyAmount);
-  } catch {
-    return res.status(400).json({ error: '올바른 형식의 이더 예치 수량이 아닙니다' });
-  }
+  checkInput(supplyAmount);
 
   try {
     // 잔고 확인
@@ -154,11 +154,7 @@ const supplyErc20 = async (req, res) => {
 const redeemCEth = async (req, res) => {
   let { redeemAmount } = req.body;
   // 입력값 확인
-  try {
-    redeemAmount = BigInt(redeemAmount);
-  } catch {
-    return res.status(400).json({ error: '올바른 형식의 이더 예치 수량이 아닙니다' });
-  }
+  checkInput(supplyAmount);
 
   try {
     // cETH redeem
@@ -176,24 +172,6 @@ const redeemCEth = async (req, res) => {
   } catch (error) {
     res.status(402).json({ error: error.message });
     console.error(error.message);
-  }
-};
-
-
-// 스마트 컨트랙트의 특정 함수를 실행하는 API 엔드포인트
-const executeContractFunction = async (req, res) => {
-  const { param1, param2 } = req.body;
-
-  try {
-    const contract = new web3.eth.Contract(contractABI, contractAddress);
-
-    // 스마트 컨트랙트의 함수를 호출하고 결과를 받아옴
-    const result = await contract.methods.myFunction(param1, param2).send({ from: '0x...' });
-
-    res.json({ message: 'Function executed successfully', result });
-  } catch (error) {
-    console.error('Error executing contract function:', error);
-    res.status(500).json({ error: 'Failed to execute contract function' });
   }
 };
 
