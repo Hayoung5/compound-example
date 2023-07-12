@@ -1,10 +1,11 @@
+const dotenv = require("dotenv");
+dotenv.config();
+
 // controller using direct rpc call with ehter js
 const ethers = require('ethers');
-// const provider = new ethers.JsonRpcProvider(process.env.JSON_PRC_URL);
-const provider = new ethers.JsonRpcProvider('http://localhost:8545');
+const provider = new ethers.JsonRpcProvider(process.env.JSON_PRC_URL);
 // Your Ethereum wallet private key
-//const privateKey = process.env.PRIVATE_KEY;
-const privateKey = 'b8c1b5c1d81f9475fdf2e334517d29f733bdfa40682207571b12fc1142cbf329';
+const privateKey = process.env.PRIVATE_KEY;
 const wallet = new ethers.Wallet(privateKey, provider);
 const myWalletAddress = wallet.address;
 
