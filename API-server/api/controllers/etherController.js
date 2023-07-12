@@ -32,7 +32,7 @@ const priceFeed = new ethers.Contract(priceFeedAddress, priceFeedAbi, provider);
 
 const assetName = 'DAI';
 const ethDecimals = BigInt(1e18); // Ethereum has 18 decimal places
-const cEthDecimals = BigInt(1e8); // Ethereum has 18 decimal places
+const cEthDecimals = BigInt(1e8); // cETG has 8 decimal places
 
 // 서버에 연결되어있는 지갑 계정의 ETH, cETH, DAI 자산을 로그
 const getMyBalance = async (req, res) => {
