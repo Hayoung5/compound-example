@@ -1,3 +1,4 @@
+const ethers = require('ethers');
 const checkInput = (input) => {
 try {
     input = BigInt(input);
@@ -6,4 +7,13 @@ try {
   }
 }
 
-module.exports = {checkInput};
+const checkAddress = (input) => {
+    try {
+        ethers.utils.getAddress(input);
+    } catch (error) {
+        return res.status(400).json({ error: '올바른 이더리움 주소값이 아닙니다' });
+    }
+}
+
+
+module.exports = {checkInput, checkAddress};
