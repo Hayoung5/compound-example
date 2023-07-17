@@ -29,7 +29,7 @@ router.get('/myBalance', getMyBalance);
 router.get('/balance', getBalance);
 router.get('/cErc20ExchangeRate', getCErc20ExchangeRate);
 router.get('/cEthExchangeRate', getCEthExchangeRate);
-router.get('/myLiquidit', getMyLiquidity);
+router.get('/myLiquidity', getMyLiquidity);
 router.get('/myCollateralFactor', getMyCollateralFactor);
 router.get('/price', getPrice);
 router.get('/borrowRate/Eth', getEthBorrowRate);
