@@ -5,17 +5,10 @@ const underlyingContractAddress = '0x6B175474E89094C44Da98b954EedeAC495271d0F'; 
 const comptrollerAddress = '0x3d9819210a31b4961b30ef54be2aed79b9c9cd3b';
 const priceFeedAddress = '0x6d2299c48a8dd07a872fdd0f8233924872ad1071';
 
-const assetName = 'DAI';
-const ethDecimals = BigInt(1e18); // Ethereum has 18 decimal places
-const cEthDecimals = BigInt(1e8); // cETG has 8 decimal places
-
 module.exports = { 
     cEthContractAddress, 
     cTokenContractAddress,
     underlyingContractAddress, 
     comptrollerAddress, 
     priceFeedAddress,
-    assetName,
-    ethDecimals,
-    cEthDecimals,
 };
