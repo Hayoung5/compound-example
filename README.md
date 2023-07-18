@@ -15,12 +15,20 @@ node ./scripts/run-localhost-fork.js
 
 <br>
 
+<img width="650" alt="스크린샷 2023-07-18 오후 3 02 14" src="https://github.com/Hayoung5/compound-example/assets/104472372/56b3dc23-a04a-4272-9c4a-2ec093677c88">
+
+<br>
+
 API 서버를 실행하기 위해 새로운 터미널을 열고 API-server 내에서 아래와 같은 명령어를 입력하세요.
 ```bash
 ## Run API Server
 node ./server.js
 ```
 올바르게 실행된 경우 터미널에 아래와 같은 출력이 나타납니다.
+
+<br>
+
+<img width="506" alt="스크린샷 2023-07-18 오후 3 05 34" src="https://github.com/Hayoung5/compound-example/assets/104472372/cf71e835-1f4a-4f98-90c9-fd0bc9d2ee1e">
 
 <br>
 
