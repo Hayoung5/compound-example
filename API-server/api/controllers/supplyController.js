@@ -50,7 +50,10 @@ const getMyBalance = async (req, res) => {
 // req.body로 받은 지갑 주소의 ETH, cETH, DAI 자산을 로그
 const getBalance = async (req, res) => {
   const { walletAddress } = req.body;
-  checkAddress(res, walletAddress);
+
+  if (!checkAddress(walletAddress)) {
+    return res.status(400).json({ error: '올바른 이더리움 주소값이 아닙니다' });
+  }
 
   try {
     console.log(`get balances of wallet address : ${walletAddress}`);
@@ -77,7 +80,10 @@ const supplyEth = async (req, res) => {
   let { supplyAmount } = req.body;
   const unScaledAmount = supplyAmount;
   // 입력값 확인
-  supplyAmount = checkInput(res, supplyAmount, ethDecimals);
+  supplyAmount = checkInput(supplyAmount, ethDecimals);
+  if (!supplyAmount) {
+    return res.status(400).json({ error: '올바른 형식의 입력값이 아닙니다' });
+  }
 
   try {
     // 잔고 확인
@@ -114,7 +120,10 @@ const supplyErc20 = async (req, res) => {
   let { supplyAmount } = req.body;
   const unScaledAmount = supplyAmount;
   // 입력값 확인
-  supplyAmount = checkInput(res, supplyAmount, daiDecimals);
+  supplyAmount = checkInput(supplyAmount, daiDecimals);
+  if (!supplyAmount) {
+    return res.status(400).json({ error: '올바른 형식의 입력값이 아닙니다' });
+  }
 
   try {
     // 잔고 확인
@@ -175,7 +184,10 @@ const redeemCEth = async (req, res) => {
   let { redeemAmount } = req.body;
   const unScaledAmount = redeemAmount;
   // 입력값 확인
-  redeemAmount = checkInput(res, redeemAmount, cEthDecimals);
+  redeemAmount = checkInput(redeemAmount, cEthDecimals);
+  if (!redeemAmount) {
+    return res.status(400).json({ error: '올바른 형식의 입력값이 아닙니다' });
+  }
 
   try {
     // cETH redeem
@@ -201,7 +213,10 @@ const redeemCEthBasedUnderlying = async (req, res) => {
   let { redeemAmount } = req.body;
   const unScaledAmount = redeemAmount;
   // 입력값 확인
-  redeemAmount = checkInput(res, redeemAmount, ethDecimals);
+  redeemAmount = checkInput(redeemAmount, ethDecimals);
+  if (!redeemAmount) {
+    return res.status(400).json({ error: '올바른 형식의 입력값이 아닙니다' });
+  }
 
   try {
     // cETH redeem
@@ -227,7 +242,10 @@ const redeemCErc20 = async (req, res) => {
   let { redeemAmount } = req.body;
   const unScaledAmount = redeemAmount;
   // 입력값 확인
-  redeemAmount = checkInput(res, redeemAmount, cDaiDecimals);
+  redeemAmount = checkInput(redeemAmount, cDaiDecimals);
+  if (!redeemAmount) {
+    return res.status(400).json({ error: '올바른 형식의 입력값이 아닙니다' });
+  }
 
   try {
     // cETH redeem
@@ -253,7 +271,10 @@ const redeemCErc20BasedUnderlying = async (req, res) => {
   let { redeemAmount } = req.body;
   const unScaledAmount = redeemAmount;
   // 입력값 확인
-  redeemAmount = checkInput(res, redeemAmount, daiDecimals);
+  redeemAmount = checkInput(redeemAmount, daiDecimals);
+  if (!redeemAmount) {
+    return res.status(400).json({ error: '올바른 형식의 입력값이 아닙니다' });
+  }
 
   try {
     // cETH redeem

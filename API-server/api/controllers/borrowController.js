@@ -29,7 +29,9 @@ let assetName, daiDecimals, cDaiDecimals, cEthDecimals;
 // 요청받은 cToken 마켓 진입
 const enterMarket = async (req, res) => {
     let { cTokenAddress } = req.body;
-    checkAddress(res, cTokenAddress);
+    if (!checkAddress(cTokenAddress)) {
+        return res.status(400).json({ error: '올바른 이더리움 주소값이 아닙니다' });
+    }
     let markets = [cTokenAddress];
     try {
         const txSigner = comptroller.connect(wallet);
@@ -38,7 +40,7 @@ const enterMarket = async (req, res) => {
         res.status(200).json({ message: 'enter the market successfully', enterMarkets});
     } catch (error) {
         console.error('Error executing enterMarkets function:', error);
-        res.status(500).json({ error: 'Failed to execute contract function' });
+        res.status(500).json({ error: 'Failed to execute enter market function' });
     }
 };
 
@@ -65,7 +67,9 @@ const getMyCollateralFactor = async (req, res) => {
     const {cTokenAddress} = req.body;
     // const { walletAddress } = req.body;
     // checkAddress(walletAddress);
-    checkAddress(res, cTokenAddress);
+    if (!checkAddress(cTokenAddress)) {
+        return res.status(400).json({ error: '올바른 이더리움 주소값이 아닙니다' });
+    }
     
     try {
         let {1:collateralFactor} = await comptroller.markets(cTokenAddress);
@@ -188,7 +192,10 @@ const borrowErc20 = async (req, res) => {
     let { borrowAmount } = req.body;
     const unScaledAmount = borrowAmount;
     // 입력값 확인
-    borrowAmount = checkInput(res, borrowAmount, daiDecimals);
+    borrowAmount = checkInput(borrowAmount, daiDecimals);
+    if (!borrowAmount) {
+        return res.status(400).json({ error: '올바른 형식의 입력값이 아닙니다' });
+    }
   
     try {
         console.log(`Trying to borrow ${borrowAmount} ${assetName}`);
@@ -245,7 +252,11 @@ const repayErc20 = async (req, res) => {
     let { repayAmount } = req.body;
     const unScaledAmount = repayAmount;
     // 입력값 확인
-    repayAmount = checkInput(res, repayAmount, daiDecimals);
+    repayAmount = checkInput(repayAmount, daiDecimals);
+    if (!repayAmount) {
+        return res.status(400).json({ error: '올바른 형식의 입력값이 아닙니다' });
+    }
+
     try {
         // cTokenContract가 ERC20 토큰 가져갈 수 있게 승인부터 선행
         const txSigner = underlying.connect(wallet);
