@@ -66,3 +66,15 @@ node ./server.js
 | 대출 받았던 ETH 상환 (repay) | /repay/Eth | {"repayAmount" : "0.1"} | "message": "0.1 ETH repay successful."} | [500] <br> {"error": EVM error message} |
 | 대출 받았던 ETH 상환 (repay) | /repay/Erc20 | {"repayAmount" : "3"} | {"message": "3 DAI repay successful."} | [400] <br> {error: '올바른 형식의 입력값이 아닙니다’} <br> [500] <br> {"error": EVM error message} |
 
+<br>
+
+### References
+https://medium.com/compound-finance/supplying-assets-to-the-compound-protocol-ec2cf5df5aa
+
+https://medium.com/compound-finance/borrowing-assets-from-compound-quick-start-guide-f5e69af4b8f4
+
+https://github.com/compound-developers/compound-supply-examples
+
+https://github.com/compound-developers/compound-borrow-examples
+
+
