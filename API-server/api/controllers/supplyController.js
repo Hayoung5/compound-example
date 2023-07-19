@@ -98,7 +98,7 @@ const supplyEth = async (req, res) => {
         const txSigner = cEth.connect(wallet);
         let mint = await txSigner.getFunction("mint").send({
           from : myWalletAddress,
-          gasPrice: ethers.toBeHex(BigInt(20000000000)), // use ethgasstation.info (mainnet only)
+          gasPrice: ethers.toBeHex(BigInt(20000000000)), // 실제 가스비 처리는 더 복잡
           value: ethers.toBeHex(supplyAmount)
         })
         await mint.wait(1);
