@@ -5,7 +5,9 @@
 <br>
 
 ##  실행 방법
-테스트넷을 실행하기 위해 hardhat-project 내에서 아래와 같은 명령어를 입력하세요.
+hardhat-project 내에서 .env_example 파일을 확인하고 Infura key를 발급받아 `ETHEREUM_PROVIDER_URL`을 작성하세요.
+
+파일명을 .env로 변경한 후, 테스트넷을 실행하기 위해 hardhat-project 내에서 아래와 같은 명령어를 입력하세요.
 ```bash
 ## Runs the Hardhat node locally (Fork mainnet)
 ## Also seeds your first mnemonic account with test Ether and ERC20s
