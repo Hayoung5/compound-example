@@ -14,6 +14,7 @@ Compound V2를 지원하며, Ether js v6를 사용합니다.
 │   ├── node_modules
 │   ├── package-lock.json
 │   ├── package.json
+│   ├── access.log                    // 로그 파일
 │   ├── server.js                     // 서버 실행 스크립트
 │   └── api
 │       ├── controllers
