@@ -117,6 +117,8 @@ hardhat-project 내에서 .env_example 파일을 확인하고 Infura key를 발�
 
 파일명을 .env로 변경한 후, 테스트넷을 실행하기 위해 hardhat-project 내에서 아래와 같은 명령어를 입력하세요.
 ```bash
+## Install module, libaray
+npm install
 ## Runs the Hardhat node locally (Fork mainnet)
 ## Also seeds your first mnemonic account with test Ether and ERC20s
 node ./scripts/run-localhost-fork.js
@@ -153,6 +155,8 @@ node ./scripts/run-localhost-fork.js
 
 API 서버를 실행하기 위해 새로운 터미널을 열고 API-server 내에서 아래와 같은 명령어를 입력하세요.
 ```bash
+## Install module, libaray
+npm install
 ## Run API Server
 node ./server.js
 ```
